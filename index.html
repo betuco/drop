@@ -1,0 +1,210 @@
+<style>
+
+#drag-1, #drag-2,#mi-elemento {
+  width: 5rem;
+  min-height: 6.5em;
+  margin: 1rem 0 0 1rem;
+  background-color: #29e;
+  color: white;
+  border-radius: 0.75em;
+  padding: 4%;
+  touch-action: none;
+  user-select: none;
+  transform: translate(0px, 0px);
+}
+.resize-drag1 {
+  width: 120px;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 1rem;
+  background-color: #29e;
+  color: white;
+  font-size: 20px;
+  font-family: sans-serif;
+
+  touch-action: none;
+
+  /* This makes things *much* easier */
+  box-sizing: border-box;
+}
+</style>
+
+<html>
+    <head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="spectrum.css">
+        <script type="text/javascript" src="spectrum.js"></script><!----Libreria para paleta de colores-->
+        <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script> <!--libreria para crear botones interactivos-->
+                                     
+        <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+        <script type="module">
+       
+            import interact from 
+            'https://cdn.interactjs.io/v1.10.17/interactjs/index.js'
+            
+            interact('.item').draggable({
+              listeners: {
+                move (event) {
+                  console.log(event.pageX,
+                              event.pageY)
+                }
+              }
+            })
+            </script>
+             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+
+    </head>
+    <body>
+        <form action="#">
+            <label for="lang">Elemento</label>
+            <select name="lenguajes" id="lang">
+              <option></option>
+              <option value="javascript" onchange="alert('bos');">Navegación de secciones</option>
+              <option value="javascript">BOTON</option>
+              <option value="php">CARRUSEL</option>
+              <option value="java">IMAGEN</option>
+              <option value="golang">TEXTO</option>
+              <option value="python">TABLA</option>
+             
+            </select>
+            <button onclick="prueba();">asd</button>
+      </form>
+      texto del elemento:<input type="text"><br>
+      <br>
+
+       color 
+        <input type='color' name='color'  />
+        <input type='color' name='color2' placeholder="boton" />
+        vista previa 
+        guardar
+
+
+        <div id="drag-1" class="draggable resize-drag1">
+            <p> You can drag one element </p>
+          </div>
+          
+          <div id="mi-elemento" class="resize-drag1">
+            Este es mi elemento
+         </div>
+         <div class="resize-drag1">
+          Resize from any edge or corner
+        </div>
+    <!--///////////////////////////////////////////////////////////////-->
+ 
+    <!---/////////////////////////////////////////////--->
+    <div id="contenedor"></div>
+        <hr>
+
+          
+    </body>
+    
+
+</html>
+<script type="module">
+    import 'https://cdn.interactjs.io/v1.9.20/auto-start/index.js'
+    import 'https://cdn.interactjs.io/v1.9.20/actions/drag/index.js'
+    import 'https://cdn.interactjs.io/v1.9.20/actions/resize/index.js'
+    import 'https://cdn.interactjs.io/v1.9.20/modifiers/index.js'
+    import 'https://cdn.interactjs.io/v1.9.20/dev-tools/index.js'
+    import interact from 'https://cdn.interactjs.io/v1.9.20/interactjs/index.js'
+    import interact from 'node_modules/interactjs/dist/interact.js'
+    import interact from 'node_modules/interactjs/dist/interact.min.js'
+  
+    interact('.item').draggable({
+      onmove(event) {
+        console.log(event.pageX, event.pageY)
+      },
+    })
+  </script>
+  <script>
+    interact("#mi-elemento")
+      .draggable({
+        onmove: function (event) {
+          var target = event.target;
+          var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+          var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+ 
+          target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+          target.setAttribute('data-x', x);
+          target.setAttribute('data-y', y);
+        }
+      });
+      interact("#drag-1")
+      .draggable({
+        onmove: function (event) {
+          var target = event.target;
+          var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+          var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+ 
+          target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+          target.setAttribute('data-x', x);
+          target.setAttribute('data-y', y);
+        }
+      });
+      interact('.resize-drag1')
+  .resizable({
+    // resize from all edges and corners
+    edges: { left: true, right: true, bottom: true, top: true },
+
+    listeners: {
+      move (event) {
+        var target = event.target
+        var x = (parseFloat(target.getAttribute('data-x')) || 0)
+        var y = (parseFloat(target.getAttribute('data-y')) || 0)
+
+        // update the element's style
+        target.style.width = event.rect.width + 'px'
+        target.style.height = event.rect.height + 'px'
+
+        // translate when resizing from top or left edges
+        x += event.deltaRect.left
+        y += event.deltaRect.top
+
+        target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
+
+        target.setAttribute('data-x', x)
+        target.setAttribute('data-y', y)
+        target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+      }
+    },
+    modifiers: [
+      // keep the edges inside the parent
+      interact.modifiers.restrictEdges({
+        outer: 'parent'
+      }),
+
+      // minimum size
+      interact.modifiers.restrictSize({
+        min: { width: 100, height: 50 }
+      })
+    ],
+
+    inertia: true
+  })
+  .draggable({
+    listeners: { move: window.dragMoveListener },
+    inertia: true,
+    modifiers: [
+      interact.modifiers.restrictRect({
+        restriction: 'parent',
+        endOnly: true
+      })
+    ]
+  })
+ </script>
+
+
+
+<script>
+    function prueba(){
+      alert('vooa');
+      document.createElement("img");
+      
+    }
+
+</script>
+
